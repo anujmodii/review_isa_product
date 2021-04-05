@@ -1,6 +1,9 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:review_isa_product/app/landing_page.dart';
+import 'package:review_isa_product/services/auth.dart';
 
-void main() {
+void main(){
   runApp(MyApp());
 }
 
@@ -9,9 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'ReviewISAProduct',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+      ),
+      home: LandingPage(
+        auth: Auth(),
       ),
     );
   }

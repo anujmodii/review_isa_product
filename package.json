@@ -1,0 +1,27 @@
+{
+  "name": "review_isa_product",
+  "version": "1.0.0",
+  "description": "Bachelor Thesis",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anujmodii/review_isa_product.git"
+  },
+  "keywords": [
+    "flutter",
+    "dart"
+  ],
+  "author": "Anuj Modi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anujmodii/review_isa_product/issues"
+  },
+  "homepage": "https://github.com/anujmodii/review_isa_product#readme"
+}
