@@ -16,6 +16,7 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta content="A new Flutter web project." name="description">
+  <meta name="google-signin-client_id" content="349036690409-vea503m9194fnjsskb61gcle1vd43atj.apps.googleusercontent.com">
 
   <!-- iOS meta tags & icons -->
   <meta content="yes" name="apple-mobile-web-app-capable">
@@ -54,6 +55,29 @@
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
 </script>
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '914767992681866',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v10'
+    });
+q
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
