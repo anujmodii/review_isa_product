@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/landing_page.dart';
 import 'package:review_isa_product/services/auth.dart';
