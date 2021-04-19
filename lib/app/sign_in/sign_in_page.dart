@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/sign_in/email_sign_in_page.dart';
@@ -37,12 +39,12 @@ class SignInPage extends StatelessWidget {
     }
   }
 
-  void _signInWithEmail(BuildContext context){
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (context) => EmailSignInPage(auth: auth,),
-      )
-    );
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => EmailSignInPage(
+        auth: auth,
+      ),
+    ));
   }
 
   @override
@@ -50,66 +52,133 @@ class SignInPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ReviewISAProduct'),
-        backgroundColor: Colors.teal[400],
         elevation: 2.0,
       ),
       body: Center(
         child: _buildContent(context),
       ),
-      backgroundColor: Color.fromRGBO(236, 239, 228, 1.0),
+      backgroundColor: Colors.grey[100],
     );
   }
 
   Widget _buildContent(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(150.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      padding: EdgeInsets.all(8.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text(
-            'Sign in',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 32.0,
-              fontWeight: FontWeight.w600,
+          Expanded(
+            flex: 4,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: SizedBox(
+                            width: 400,
+                            height: 400,
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                        Expanded(
+                            child: Text(
+                                "Text goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes here"))
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                        Expanded(
+                          child: SizedBox(
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
-          SizedBox(height: 48.0),
-          SocialSignInButton(
-            assetName: 'images/google-logo.png',
-            text: 'Sign in with Google',
-            textColor: Colors.black87,
-            color: Colors.white,
-            onPressed: _signInWithGoogle,
-          ),
-          SizedBox(height: 8.0),
-          SocialSignInButton(
-            assetName: 'images/facebook-logo.png',
-            text: 'Sign in with Facebook',
-            textColor: Colors.white,
-            color: Color(0xFF334D92),
-            onPressed: _signInWithFacebook,
-          ),
-          SizedBox(height: 8.0),
-          SignInButton(
-            text: 'Sign in with email',
-            textColor: Colors.white,
-            color: Colors.teal[700],
-            onPressed:() => _signInWithEmail(context),
-          ),
-          SizedBox(height: 8.0),
-          Text(
-            'or',
-            style: TextStyle(fontSize: 14.0, color: Colors.black87),
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(height: 8.0),
-          SignInButton(
-            text: 'Go anonymous',
-            textColor: Colors.black,
-            color: Colors.lime[300],
-            onPressed: _signInAnonymously,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  'Sign in',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 48.0),
+                SocialSignInButton(
+                  assetName: 'images/google-logo.png',
+                  text: 'Sign in with Google',
+                  textColor: Colors.black87,
+                  color: Colors.white,
+                  onPressed: _signInWithGoogle,
+                ),
+                SizedBox(height: 8.0),
+                SocialSignInButton(
+                  assetName: 'images/facebook-logo.png',
+                  text: 'Sign in with Facebook',
+                  textColor: Colors.white,
+                  color: Color(0xFF334D92),
+                  onPressed: _signInWithFacebook,
+                ),
+                SizedBox(height: 8.0),
+                SignInButton(
+                  text: 'Sign in with email',
+                  textColor: Colors.white,
+                  color: Colors.teal[700],
+                  onPressed: () => _signInWithEmail(context),
+                ),
+                SizedBox(height: 8.0),
+                SignInButton(
+                  text: 'Go anonymous',
+                  textColor: Colors.black,
+                  color: Colors.lime[300],
+                  onPressed: _signInAnonymously,
+                ),
+              ],
+            ),
           ),
         ],
       ),
