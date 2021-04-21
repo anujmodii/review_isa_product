@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:review_isa_product/app/history.dart';
 import 'package:review_isa_product/services/auth.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,6 +12,15 @@ class HomePage extends StatelessWidget {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void historyPageClicked(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => HistoryPage(
+        auth: auth,
+      ),
+    ));
+    print(context);
   }
 
   @override
@@ -33,7 +43,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             //TODO: attach history func
-            onPressed: () {},
+            onPressed: () => historyPageClicked(context),
           ),
           TextButton(
             child: Padding(
