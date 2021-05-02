@@ -1,14 +1,28 @@
+import 'dart:html';
 import 'package:flutter/material.dart';
+import 'package:review_isa_product/app/analysisASIN.dart';
+import 'package:review_isa_product/app/analyzedContents.dart';
 import 'package:review_isa_product/app/history.dart';
 import 'package:review_isa_product/services/auth.dart';
+import 'dart:convert';
+import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key key, @required this.auth}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, @required this.auth, this.analyzed}) : super(key: key);
   final AuthBase auth;
+  bool analyzed;
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final TextEditingController _asinTextController = TextEditingController();
+
+  var response = "";
 
   Future<void> _signOut() async {
     try {
-      await auth.signOut();
+      await widget.auth.signOut();
     } catch (e) {
       print(e.toString());
     }
@@ -17,10 +31,9 @@ class HomePage extends StatelessWidget {
   void historyPageClicked(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(
       builder: (context) => HistoryPage(
-        auth: auth,
+        auth: widget.auth,
       ),
     ));
-    print(context);
   }
 
   @override
@@ -28,6 +41,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ReviewISAProduct'),
+        titleSpacing: 00.0,
+        centerTitle: true,
+        toolbarHeight: 60,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(480)),
+        elevation: 0.00,
         actions: <Widget>[
           TextButton(
             child: Padding(
@@ -42,7 +60,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            //TODO: attach history func
             onPressed: () => historyPageClicked(context),
           ),
           TextButton(
@@ -64,47 +81,78 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: Container(
-                  color: Color.fromRGBO(246, 232, 209, 1.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(25.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        TextField(
-                          autofocus: true,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            labelText: 'ASIN',
-                          ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 1,
+              child: Container(
+                child: Padding(
+                  padding: const EdgeInsets.all(25.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      TextField(
+                        autofocus: true,
+                        controller: _asinTextController,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                          labelText: 'ASIN',
                         ),
-                        SizedBox(height: 50.0),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text("ANALYSE"),
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 50.0),
+                      ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            final path = Uri.parse(
+                                'http://127.0.0.1:5000/product_review/' +
+                                    _asinTextController.text);
+                            var response = await getKey(path);
+                            // response = jsonDecode(re);
+                            setState(() {
+                              widget.analyzed = true;
+
+                            });
+                          } catch (e) {
+                            print(e.toString() + " catched");
+                          }
+                        },
+                        child: Text("ANALYSE"),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              VerticalDivider(
-                width: 0,
-                thickness: 1,
-              ),
-              Expanded(
-                flex: 7,
-                child: Container(),
-                //TODO: Output window
-              )
-            ],
-          ),
+            ),
+            VerticalDivider(
+              width: 0,
+              thickness: 1,
+            ),
+            Expanded(
+              flex: 7,
+              child: widget.analyzed
+                  ? AnalyzedContents()
+                  : Container(
+                      child: Text(
+                          "Please search for an asin eg. B00570QQ5G, B01G91Y4VE"),
+                    ),
+            )
+            // Expanded(
+            //   flex: 7,
+            //   child: analyzed
+            //       ? Container(
+            //           //if analyzed == true
+            //           child:SingleChildScrollView(
+            //           ),
+            //           )
+            //       : Container(
+            //           // if analyzed == false
+            //           ),
+            // ),
+            //call AnalyzedHomepage build content
+          ],
         ),
+      ),
     );
   }
 }
