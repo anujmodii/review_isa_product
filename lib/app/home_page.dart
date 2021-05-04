@@ -137,19 +137,6 @@ class _HomePageState extends State<HomePage> {
                           "Please search for an asin eg. B00570QQ5G, B01G91Y4VE"),
                     ),
             )
-            // Expanded(
-            //   flex: 7,
-            //   child: analyzed
-            //       ? Container(
-            //           //if analyzed == true
-            //           child:SingleChildScrollView(
-            //           ),
-            //           )
-            //       : Container(
-            //           // if analyzed == false
-            //           ),
-            // ),
-            //call AnalyzedHomepage build content
           ],
         ),
       ),
