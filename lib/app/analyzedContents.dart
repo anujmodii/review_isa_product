@@ -13,27 +13,37 @@ class AnalyzedContents extends StatefulWidget {
 class _AnalyzedContentsState extends State<AnalyzedContents> {
   @override
   Widget build(BuildContext context) {
+    final IFrameElement scatterPlotIFrame = IFrameElement();
+    scatterPlotIFrame.src = getScatterPlot();
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      'scatter_plot',
+      (int viewId) => scatterPlotIFrame,
+    );
+    Widget scatterPlot = HtmlElementView(
+      key: UniqueKey(),
+      viewType: 'scatter_plot',
+    );
+    final IFrameElement barPlotIFrame = IFrameElement();
+    barPlotIFrame.src = getBarPlot();
+    // ignore: undefined_prefixed_name
+    ui.platformViewRegistry.registerViewFactory(
+      'bar_plot',
+          (int viewId) => barPlotIFrame,
+    );
+    Widget barPlot = HtmlElementView(
+      key: UniqueKey(),
+      viewType: 'bar_plot',
+    );
     final PageController controller = PageController(initialPage: 0);
-    print(getCompetitionIndex());
-    print(getBadWordcloud());
-    print(getGoodWordcloud());
-    print(getRecommendationScore());
-    print(getBarPlot());
-    print(getPieChart());
-    print(getBsr());
-    print(getSalesChart());
-    print(getSalesIndex());
-    print(getTotalProds());
-    print(getScatterPlot());
-    print(getSufficientDataReviews());
-    print(getTotalReviews());
+    print("app running");
     return Container(
       child: Row(
         children: [
           Expanded(
             flex: 9,
             child: PageView(
-              scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.vertical,
               controller: controller,
               children: [
                 GridView.builder(
@@ -62,7 +72,7 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                         children: [
                           Image.network(
                             imagesUrl[index],
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.contain,
                           ),
                           Text(subs[index])
                         ],
@@ -70,7 +80,14 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                     );
                   },
                 ),
-                // Container(child: createIFrame(getScatterPlot()))
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: scatterPlot,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: barPlot,
+                ),
               ],
             ),
           ),
@@ -112,7 +129,7 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                     ),
                     child: ListTile(
                       title: Text(
-                        "BSR",
+                        "Rank Index",
                         textScaleFactor: 1.5,
                       ),
                       subtitle: Container(
@@ -151,23 +168,6 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                     ),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: ListTile(
-                      title: Text("Details"),
-                      subtitle: Text(
-                        "Total Similar Products : " +
-                            getTotalProds().toString() +
-                            "\nTotal reviews : " +
-                            getTotalReviews().toString() +
-                            "\nTotal reviews with sufficient data : " +
-                            getSufficientDataReviews().toString() +
-                            "\n\n",
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
@@ -175,24 +175,4 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
       ),
     );
   }
-
-  // Widget createIFrame(String src) {
-  //   final IFrameElement _iframeElement = IFrameElement();
-  //   _iframeElement.height = '500';
-  //   _iframeElement.width = '500';
-  //
-  //   _iframeElement.src = src;
-  //   _iframeElement.style.border = 'none';
-  //
-  //   // ignore: undefined_prefixed_name
-  //   ui.platformViewRegistry.registerViewFactory(
-  //     src,
-  //     (int viewId) => _iframeElement,
-  //   );
-  //
-  //   return HtmlElementView(
-  //     key: UniqueKey(),
-  //     viewType: src,
-  //   );
-  // }
 }
