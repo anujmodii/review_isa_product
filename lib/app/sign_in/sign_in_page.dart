@@ -54,7 +54,7 @@ class SignInPage extends StatelessWidget {
       body: Center(
         child: _buildContent(context),
       ),
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white30,
     );
   }
 
@@ -75,53 +75,115 @@ class SignInPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
-                          child: SizedBox(
-                            width: 400,
-                            height: 400,
-                            child: Image.asset('images/cover_pic.jpg'),
-                          ),
+                          flex: 3,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20.0),
+                              child: Image.asset('images/cover_pic.jpg'),
+                            )
                         ),
                         Expanded(
-                            child: Text(
-                                "Text goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes hereText goes here"))
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
-                          ),
-                        ),
-                        Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text("B.SC COMPUTER SCI PROJECT UNDER THE GUIDANCE OF DR. ANAL ACHARYA",
+                            style: TextStyle(
+                              fontSize: 32,
+                              fontStyle: FontStyle.italic,
+                              fontWeight: FontWeight.bold,
+                            ),),
                           ),
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    //ABOUT US
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 175,
+                                    backgroundImage: AssetImage(
+                                      'images/ishita.jpeg',
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    "ISHITA BAJORIA \n        513",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      letterSpacing: 3,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                         Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 175,
+                                    backgroundImage: AssetImage(
+                                      'images/sudeshna.jpeg',
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    "SUDESHNA SWAIN \n          538",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      letterSpacing: 3,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                         Expanded(
-                          child: SizedBox(
-                            child: Image.asset('images/cover_pic.jpg'),
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 175,
+                                    backgroundImage: AssetImage(
+                                      'images/anuj.jpeg',
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Text(
+                                    "ANUJ MODI \n      506",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      letterSpacing: 3,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -135,6 +197,7 @@ class SignInPage extends StatelessWidget {
             width: 0,
             thickness: 1,
           ),
+          //SIGN IN SIDE BAR
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(15.0),

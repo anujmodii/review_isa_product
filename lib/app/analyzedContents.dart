@@ -1,5 +1,5 @@
 import 'dart:html';
-
+import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'analysisASIN.dart';
 
@@ -50,12 +50,27 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                       getPieChart(),
                       getSalesChart(),
                     ];
-                    return Image.network(
-                      imagesUrl[index],
-                      fit: BoxFit.cover,
+                    List subs = [
+                      "GOOD WORDCLOUD",
+                      "BAD WORDCLOUD",
+                      "GOOD REVIEWS V/S BAD REVIEWS",
+                      "RATING"
+                    ];
+                    return Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Image.network(
+                            imagesUrl[index],
+                            fit: BoxFit.fitWidth,
+                          ),
+                          Text(subs[index])
+                        ],
+                      ),
                     );
                   },
                 ),
+                // Container(child: createIFrame(getScatterPlot()))
               ],
             ),
           ),
@@ -73,69 +88,69 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                       borderRadius: BorderRadius.circular(15.0),
                     ),
                     child: ListTile(
-                        title: Text(
-                          "Competitive Index",
-                          textScaleFactor: 1.5,
-                        ),
-                        subtitle: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            getCompetitionIndex().toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 50,
-                            ),
+                      title: Text(
+                        "Competitive Index",
+                        textScaleFactor: 1.5,
+                      ),
+                      subtitle: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          getCompetitionIndex().toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
                           ),
                         ),
                       ),
                     ),
                   ),
+                ),
                 Expanded(
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child:ListTile(
-                        title: Text(
-                          "BSR",
-                          textScaleFactor: 1.5,
-                        ),
-                        subtitle: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            getBsr().toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 50,
-                            ),
+                    child: ListTile(
+                      title: Text(
+                        "BSR",
+                        textScaleFactor: 1.5,
+                      ),
+                      subtitle: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          getBsr().toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
                           ),
                         ),
                       ),
                     ),
                   ),
+                ),
                 Expanded(
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15.0),
                     ),
-                    child:ListTile(
-                        title: Text(
-                          "Recommendaton Score",
-                          textScaleFactor: 1.2,
-                        ),
-                        subtitle: Container(
-                          alignment: Alignment.center,
-                          child: Text(
-                            getRecommendationScore().toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 50,
-                            ),
+                    child: ListTile(
+                      title: Text(
+                        "Recommendaton Score",
+                        textScaleFactor: 1.2,
+                      ),
+                      subtitle: Container(
+                        alignment: Alignment.center,
+                        child: Text(
+                          getRecommendationScore().toString(),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 50,
                           ),
                         ),
                       ),
                     ),
                   ),
+                ),
                 Expanded(
                   child: Container(
                     alignment: Alignment.bottomCenter,
@@ -147,7 +162,8 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                             "\nTotal reviews : " +
                             getTotalReviews().toString() +
                             "\nTotal reviews with sufficient data : " +
-                            getSufficientDataReviews().toString()+"\n\n",
+                            getSufficientDataReviews().toString() +
+                            "\n\n",
                       ),
                     ),
                   ),
@@ -159,4 +175,24 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
       ),
     );
   }
+
+  // Widget createIFrame(String src) {
+  //   final IFrameElement _iframeElement = IFrameElement();
+  //   _iframeElement.height = '500';
+  //   _iframeElement.width = '500';
+  //
+  //   _iframeElement.src = src;
+  //   _iframeElement.style.border = 'none';
+  //
+  //   // ignore: undefined_prefixed_name
+  //   ui.platformViewRegistry.registerViewFactory(
+  //     src,
+  //     (int viewId) => _iframeElement,
+  //   );
+  //
+  //   return HtmlElementView(
+  //     key: UniqueKey(),
+  //     viewType: src,
+  //   );
+  // }
 }
