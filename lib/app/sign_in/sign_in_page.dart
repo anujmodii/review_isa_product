@@ -76,21 +76,23 @@ class SignInPage extends StatelessWidget {
                       children: <Widget>[
                         Expanded(
                           flex: 3,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Image.asset('images/cover_pic.jpg'),
-                            )
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.asset('images/cover_pic.jpg'),
+                          ),
                         ),
                         Expanded(
                           flex: 2,
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text("B.SC COMPUTER SCI PROJECT UNDER THE GUIDANCE OF DR. ANAL ACHARYA",
-                            style: TextStyle(
-                              fontSize: 32,
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.bold,
-                            ),),
+                            child: Text(
+                              "B.SC COMPUTER SCI PROJECT UNDER THE GUIDANCE OF DR. ANAL ACHARYA",
+                              style: TextStyle(
+                                fontSize: 32,
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ),
                       ],
