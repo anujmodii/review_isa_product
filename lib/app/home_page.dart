@@ -2,7 +2,6 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/analysisASIN.dart';
 import 'package:review_isa_product/app/analyzedContents.dart';
-import 'package:review_isa_product/app/history.dart';
 import 'package:review_isa_product/services/auth.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
@@ -28,14 +27,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  void historyPageClicked(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => HistoryPage(
-        auth: widget.auth,
-      ),
-    ));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,21 +38,6 @@ class _HomePageState extends State<HomePage> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(480)),
         elevation: 0.00,
         actions: <Widget>[
-          TextButton(
-            child: Padding(
-              padding: const EdgeInsets.only(
-                right: 50,
-              ),
-              child: Text(
-                'HISTORY',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-            onPressed: () => historyPageClicked(context),
-          ),
           TextButton(
             child: Padding(
               padding: const EdgeInsets.only(
