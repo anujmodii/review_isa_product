@@ -3,17 +3,24 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 var decodedResp;
-
+var code;
 Future getKey(url) async {
   var response = await http.get(url);
   decodedResp= jsonDecode(response.body);
+  code = response.statusCode;
   return response.body;
 }
 
 int getCompetitionIndex(){
   return decodedResp["Competition_Index"];
 }
+int getCode(){
+  return code;
+}
 
+void setCode(int errorCode){
+  code = errorCode;
+}
 String getBadWordcloud(){
   return decodedResp["bad_wordcloud"];
 }
@@ -36,6 +43,10 @@ int getBsr(){
 
 double getRecommendationScore(){
   return decodedResp["recommendation_score"];
+}
+
+String getProductTtile(){
+  return decodedResp["product_title"];
 }
 
 String getSalesChart(){

@@ -86,7 +86,7 @@ class SignInPage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Text(
-                              "B.SC COMPUTER SCI PROJECT UNDER THE GUIDANCE OF DR. ANAL ACHARYA",
+                              "Turning megabytes of product review data into meaningful insights",
                               style: TextStyle(
                                 fontSize: 32,
                                 fontStyle: FontStyle.italic,
@@ -97,6 +97,15 @@ class SignInPage extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Text(
+                        " ------------ BY ------------",
+                        textScaleFactor: 2,
+                        style:
+                            TextStyle(color: Color.fromRGBO(73, 128, 3, 1.0)),
+                      ),
                     SizedBox(
                       height: 25,
                     ),

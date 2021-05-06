@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/analysisASIN.dart';
 import 'package:review_isa_product/app/analyzedContents.dart';
 import 'package:review_isa_product/services/auth.dart';
-import 'dart:convert';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -78,6 +77,10 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 50.0),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromRGBO(73, 128, 3, 1.0), // background
+                          onPrimary: Colors.white, // foreground
+                        ),
                         onPressed: () async {
                           try {
                             final path = Uri.parse(
@@ -87,10 +90,12 @@ class _HomePageState extends State<HomePage> {
                             // response = jsonDecode(re);
                             setState(() {
                               widget.analyzed = true;
-
                             });
                           } catch (e) {
-                            print(e.toString() + " catched");
+                            setState(() {
+                              widget.analyzed = true;
+                            });
+                            setCode(404);
                           }
                         },
                         child: Text("ANALYSE"),
@@ -109,8 +114,15 @@ class _HomePageState extends State<HomePage> {
               child: widget.analyzed
                   ? AnalyzedContents()
                   : Container(
-                      child: Text(
-                          "Please search for an asin eg. B00570QQ5G, B01G91Y4VE"),
+                      child: Center(
+                        child: Text(
+                            "Please search for an asin eg. B00570QQ5G, B01G91Y4VE",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Color.fromRGBO(73, 128, 3, 1.0),
+                        ),),
+                      ),
                     ),
             )
           ],
