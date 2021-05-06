@@ -50,8 +50,8 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                   GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 5,
+                      mainAxisSpacing: 5,
                     ),
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int index) {
@@ -65,12 +65,10 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                         "GOOD WORDCLOUD",
                         "BAD WORDCLOUD",
                       ];
-                      return Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: index == 3
+                      return index == 3
                             ? Center(
                                 child: Stack(
-                                  children: <Widget>[
+                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.center,
                                       child: Image.network(
@@ -97,6 +95,7 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                                     fit: BoxFit.contain,
                                   )
                                 : Column(
+                          mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.network(
                                         imagesUrl[index],
@@ -109,8 +108,7 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                                         ),
                                       )
                                     ],
-                                  ),
-                      );
+                                  );
                     },
                   ),
                   Padding(
