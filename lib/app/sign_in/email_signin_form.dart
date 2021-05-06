@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/services/auth.dart';
-
+//Email sign in template
 enum EmailSignInFormType { signIn, register }
 
 class EmailSignInForm extends StatefulWidget {

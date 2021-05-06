@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-
+//model class - getter functions for retrieving data from api response
 var decodedResp;
 var code;
 Future getKey(url) async {

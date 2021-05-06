@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/sign_in/email_signin_form.dart';
 import 'package:review_isa_product/services/auth.dart';
+
+//Sign In using email id and password
 class EmailSignInPage extends StatelessWidget {
 
   EmailSignInPage({@required this.auth});

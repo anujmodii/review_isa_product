@@ -17,8 +17,6 @@ class SignInPage extends StatelessWidget {
   }
 
   Future<void> _signInWithGoogle() async {
-    //To test this feature run by following command
-    // flutter run -d chrome --web-hostname localhost --web-port 61441
     try {
       await auth.signInWithGoogle();
     } catch (e) {
@@ -75,22 +73,24 @@ class SignInPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Expanded(
-                          flex: 3,
+                          flex: 2,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(20.0),
                             child: Image.asset('assets/images/cover_pic.jpg'),
                           ),
                         ),
                         Expanded(
-                          flex: 2,
+                          flex: 3,
                           child: Padding(
-                            padding: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.all(30.0),
                             child: Text(
-                              "Turning megabytes of product review data into meaningful insights",
+                              "Turning megabytes of product review data into meaningful insights under the guidance of Dr. Anal Acharya".toUpperCase(),
                               style: TextStyle(
-                                fontSize: 32,
+                                fontSize: 25,
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
+                                wordSpacing: 3,
+                                letterSpacing: 1.5,
                               ),
                             ),
                           ),
@@ -98,16 +98,16 @@ class SignInPage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     Text(
-                        " ------------ BY ------------",
+                        " - - - - - - - - - - - -  BY  - - - - - - - - - - - -",
                         textScaleFactor: 2,
                         style:
-                            TextStyle(color: Color.fromRGBO(73, 128, 3, 1.0)),
+                            TextStyle(fontWeight: FontWeight.bold,),
                       ),
                     SizedBox(
-                      height: 25,
+                      height: 15,
                     ),
                     //ABOUT US
                     Row(
@@ -120,7 +120,7 @@ class SignInPage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    radius: 175,
+                                    radius: 125,
                                     backgroundImage: AssetImage(
                                       'assets/images/ishita.jpeg',
                                     ),
@@ -148,7 +148,7 @@ class SignInPage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    radius: 175,
+                                    radius: 125,
                                     backgroundImage: AssetImage(
                                       'assets/images/sudeshna.jpeg',
                                     ),
@@ -176,7 +176,7 @@ class SignInPage extends StatelessWidget {
                               child: Column(
                                 children: [
                                   CircleAvatar(
-                                    radius: 175,
+                                    radius: 125,
                                     backgroundImage: AssetImage(
                                       'assets/images/anuj.jpeg',
                                     ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/landing_page.dart';
 import 'package:review_isa_product/services/auth.dart';
-
+//the first page the app runs
 void main(){
   runApp(MyApp());
 }

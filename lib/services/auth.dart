@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
+//manages the user authentication data
 abstract class AuthBase {
   User get currentUser;
   Stream<User> authStateChanges();
@@ -70,13 +70,8 @@ class Auth implements AuthBase {
 
   @override
   Future<User> signInWithFacebook() async {
-    // final fb = FacebookLogin();
-    // final response = await fb.logIn(permissions: [
-    //   FacebookPermission.publicProfile,
-    //   FacebookPermission.email,
-    // ]);
-    final LoginResult result = await FacebookAuth.instance
-        .login(); // by the fault we request the email and the public profile
+
+    final LoginResult result = await FacebookAuth.instance.login();
 
     switch (result.status) {
       case LoginStatus.success:
@@ -92,7 +87,7 @@ class Auth implements AuthBase {
       case LoginStatus.failed:
         throw FirebaseAuthException(
           code: "ERROR_FACEBOOK_LOGIN_FAILED",
-          message: "cANT LOGIN",
+          message: "CANT LOGIN",
         );
       default:
         throw UnimplementedError();
@@ -101,10 +96,10 @@ class Auth implements AuthBase {
 
   @override
   Future<void> signOut() async {
-    // final googleSignIn = GoogleSignIn();
-    // await googleSignIn.signOut();
-    // final fbSignIn = FacebookAuth.instance;
-    // await fbSignIn.logOut();
+    final googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
+    final fbSignIn = FacebookAuth.instance;
+    await fbSignIn.logOut();
     await _firebaseAuth.signOut();
   }
 }

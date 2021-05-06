@@ -3,8 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'analysisASIN.dart';
 
-//flutter run -d chrome --web-renderer html // to run the app
-//flutter build web --web-renderer html --release // to generate a production build
+//display the response from flask app in the homepage after searching for asin
 class AnalyzedContents extends StatefulWidget {
   @override
   _AnalyzedContentsState createState() => _AnalyzedContentsState();
@@ -250,3 +249,5 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
     }
   }
 }
+//flutter run -d chrome --web-renderer html // to run the app
+//flutter build web --web-renderer html --release // to generate a production build

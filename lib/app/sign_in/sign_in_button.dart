@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:review_isa_product/common_widgets/custom_elevated_button.dart';
-
+//Sign in button template
 class SignInButton extends CustomElevatedButton {
   SignInButton({
     @required String text,

@@ -4,7 +4,7 @@ import 'package:review_isa_product/app/analysisASIN.dart';
 import 'package:review_isa_product/app/analyzedContents.dart';
 import 'package:review_isa_product/services/auth.dart';
 import 'package:flutter/material.dart';
-
+//page after signing in, provides interface for analysing asin, connects to flask app
 class HomePage extends StatefulWidget {
   HomePage({Key key, @required this.auth, this.analyzed}) : super(key: key);
   final AuthBase auth;

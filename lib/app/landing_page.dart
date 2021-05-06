@@ -1,10 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:review_isa_product/app/analysisASIN.dart';
 import 'package:review_isa_product/app/home_page.dart';
 import 'package:review_isa_product/app/sign_in/sign_in_page.dart';
 import 'package:review_isa_product/services/auth.dart';
-
+//controls the screen user sees, if he has logged in before or not
 class LandingPage extends StatelessWidget {
   const LandingPage({Key key, @required this.auth}) : super(key: key);
   final AuthBase auth;
