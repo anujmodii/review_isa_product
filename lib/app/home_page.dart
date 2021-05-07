@@ -31,11 +31,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('ReviewISAProduct'),
-        titleSpacing: 00.0,
         centerTitle: true,
-        toolbarHeight: 60,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(480)),
-        elevation: 0.00,
         actions: <Widget>[
           TextButton(
             child: Padding(
