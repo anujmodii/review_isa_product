@@ -82,16 +82,14 @@ class _HomePageState extends State<HomePage> {
                             final path = Uri.parse(
                                 'http://127.0.0.1:5000/product_review/' +
                                     _asinTextController.text);
-                            var response = await getKey(path);
-                            // response = jsonDecode(re);
-                            setState(() {
-                              widget.analyzed = true;
-                            });
+                            await getKey(path);
                           } catch (e) {
+                            setCode(404);
+                          }
+                          finally{
                             setState(() {
                               widget.analyzed = true;
                             });
-                            setCode(404);
                           }
                         },
                         child: Text("ANALYSE"),

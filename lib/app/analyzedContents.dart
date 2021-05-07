@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:ui' as ui;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'analysisASIN.dart';
 
@@ -14,27 +15,28 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
   Widget build(BuildContext context) {
     code = getCode();
     if (code == 200) {
+      var now = new DateTime.now().millisecondsSinceEpoch.toString();
       final IFrameElement scatterPlotIFrame = IFrameElement();
       scatterPlotIFrame.src = getScatterPlot();
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(
-        'scatter_plot',
+        now+'scatter_plot',
         (int viewId) => scatterPlotIFrame,
       );
       Widget scatterPlot = HtmlElementView(
         key: UniqueKey(),
-        viewType: 'scatter_plot',
+        viewType: now+'scatter_plot',
       );
       final IFrameElement barPlotIFrame = IFrameElement();
       barPlotIFrame.src = getBarPlot();
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(
-        'bar_plot',
+        now+'bar_plot',
         (int viewId) => barPlotIFrame,
       );
       Widget barPlot = HtmlElementView(
         key: UniqueKey(),
-        viewType: 'bar_plot',
+        viewType: now+'bar_plot',
       );
       final PageController controller = PageController(initialPage: 0);
       print("app running");
@@ -50,8 +52,9 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                   GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 5,
-                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 1.0,
+                      mainAxisSpacing: 10,
                     ),
                     itemCount: 4,
                     itemBuilder: (BuildContext context, int index) {
@@ -95,7 +98,6 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                                     fit: BoxFit.contain,
                                   )
                                 : Column(
-                          mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Image.network(
                                         imagesUrl[index],
@@ -140,12 +142,14 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                           "Product Title",
                           textScaleFactor: 1.5,
                         ),
-                        subtitle: Text(
-                          getProductTtile().toUpperCase(),
-                          textScaleFactor: 1.2,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(73, 128, 3, 1.0),
+                        subtitle: SingleChildScrollView(
+                          child: Text(
+                            getProductTtile().toUpperCase(),
+                            textScaleFactor: 1.2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(73, 128, 3, 1.0),
+                            ),
                           ),
                         ),
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:review_isa_product/app/sign_in/email_sign_in_page.dart';
 import 'package:review_isa_product/app/sign_in/sign_in_button.dart';
 import 'package:review_isa_product/app/sign_in/social_sign_in_button.dart';
+import 'package:review_isa_product/common_widgets/avatar_card.dart';
 import 'package:review_isa_product/services/auth.dart';
 
 class SignInPage extends StatelessWidget {
@@ -75,18 +76,18 @@ class SignInPage extends StatelessWidget {
                         Expanded(
                           flex: 2,
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20.0),
+                            borderRadius: BorderRadius.circular(5.0),
                             child: Image.asset('assets/images/cover_pic.jpg'),
                           ),
                         ),
                         Expanded(
                           flex: 3,
                           child: Padding(
-                            padding: const EdgeInsets.all(30.0),
+                            padding: const EdgeInsets.all(25.0),
                             child: Text(
                               "Turning megabytes of product review data into meaningful insights under the guidance of Dr. Anal Acharya".toUpperCase(),
                               style: TextStyle(
-                                fontSize: 25,
+                                fontSize: 33,
                                 fontStyle: FontStyle.italic,
                                 fontWeight: FontWeight.bold,
                                 wordSpacing: 3,
@@ -102,7 +103,7 @@ class SignInPage extends StatelessWidget {
                     ),
                     Text(
                         " - - - - - - - - - - - -  BY  - - - - - - - - - - - -",
-                        textScaleFactor: 2,
+                        textScaleFactor: 1.7,
                         style:
                             TextStyle(fontWeight: FontWeight.bold,),
                       ),
@@ -113,90 +114,9 @@ class SignInPage extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 125,
-                                    backgroundImage: AssetImage(
-                                      'assets/images/ishita.jpeg',
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    "ISHITA BAJORIA \n        513",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      letterSpacing: 3,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 125,
-                                    backgroundImage: AssetImage(
-                                      'assets/images/sudeshna.jpeg',
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    "SUDESHNA SWAIN \n          538",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      letterSpacing: 3,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Card(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 125,
-                                    backgroundImage: AssetImage(
-                                      'assets/images/anuj.jpeg',
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 15,
-                                  ),
-                                  Text(
-                                    "ANUJ MODI \n      506",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                      letterSpacing: 3,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                        AvatarCard('assets/images/ishita.jpeg',"ISHITA BAJORIA \n        513"),
+                        AvatarCard('assets/images/sudeshna.jpeg', "SUDESHNA SWAIN \n          538"),
+                        AvatarCard('assets/images/anuj.jpeg', "ANUJ MODI \n      506")
                       ],
                     ),
                   ],
