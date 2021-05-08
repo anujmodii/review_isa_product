@@ -16,28 +16,36 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
     code = getCode();
     if (code == 200) {
       var now = new DateTime.now().millisecondsSinceEpoch.toString();
+      Widget barPlot;
       final IFrameElement scatterPlotIFrame = IFrameElement();
       scatterPlotIFrame.src = getScatterPlot();
       // ignore: undefined_prefixed_name
       ui.platformViewRegistry.registerViewFactory(
-        now+'scatter_plot',
+        now + 'scatter_plot',
         (int viewId) => scatterPlotIFrame,
       );
       Widget scatterPlot = HtmlElementView(
         key: UniqueKey(),
-        viewType: now+'scatter_plot',
+        viewType: now + 'scatter_plot',
       );
-      final IFrameElement barPlotIFrame = IFrameElement();
-      barPlotIFrame.src = getBarPlot();
-      // ignore: undefined_prefixed_name
-      ui.platformViewRegistry.registerViewFactory(
-        now+'bar_plot',
-        (int viewId) => barPlotIFrame,
-      );
-      Widget barPlot = HtmlElementView(
-        key: UniqueKey(),
-        viewType: now+'bar_plot',
-      );
+
+      if (getBarPlot() != "NULL") {
+        final IFrameElement barPlotIFrame = IFrameElement();
+        barPlotIFrame.src = getBarPlot();
+        // ignore: undefined_prefixed_name
+        ui.platformViewRegistry.registerViewFactory(
+          now + 'bar_plot',
+          (int viewId) => barPlotIFrame,
+        );
+        barPlot = HtmlElementView(
+          key: UniqueKey(),
+          viewType: now + 'bar_plot',
+        );
+      } else {
+        barPlot = Center(
+            child: Text(
+                "There are no competitors in the market, could not compile the bar plot"));
+      }
       final PageController controller = PageController(initialPage: 0);
       print("app running");
       return Container(
@@ -69,48 +77,51 @@ class _AnalyzedContentsState extends State<AnalyzedContents> {
                         "BAD WORDCLOUD",
                       ];
                       return index == 3
-                            ? Center(
-                                child: Stack(
-                                   children: <Widget>[
-                                    Container(
-                                      alignment: Alignment.center,
-                                      child: Image.network(
-                                        imagesUrl[index],
-                                        fit: BoxFit.contain,
-                                      ),
+                          ? Center(
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: Image.network(
+                                      imagesUrl[index],
+                                      fit: BoxFit.contain,
                                     ),
-                                    Container(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        getSalesIndex().toString(),
-                                        style: TextStyle(
-                                            color: Colors.blueAccent,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 35.0),
-                                      ),
+                                  ),
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      getSalesIndex().toString(),
+                                      style: TextStyle(
+                                          color: Colors.blueAccent,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 35.0),
                                     ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          : index == 2
+                              ? Image.network(
+                                  imagesUrl[index],
+                                  fit: BoxFit.contain,
+                                )
+                              : Column(
+                                  children: [
+                                    imagesUrl[index] != "NULL"
+                                        ? Image.network(
+                                            imagesUrl[index],
+                                            fit: BoxFit.contain,
+                                          )
+                                        : Text(
+                                            "INSUFFICIENT DATA, CANNOT COMPUTE WORDCLOUD"),
+                                    Text(
+                                      subs[index],
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                      ),
+                                    )
                                   ],
-                                ),
-                              )
-                            : index == 2
-                                ? Image.network(
-                                    imagesUrl[index],
-                                    fit: BoxFit.contain,
-                                  )
-                                : Column(
-                                    children: [
-                                      Image.network(
-                                        imagesUrl[index],
-                                        fit: BoxFit.contain,
-                                      ),
-                                      Text(
-                                        subs[index],
-                                        style: TextStyle(
-                                          fontSize: 22,
-                                        ),
-                                      )
-                                    ],
-                                  );
+                                );
                     },
                   ),
                   Padding(
